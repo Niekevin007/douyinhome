@@ -16,6 +16,7 @@ import com.androidkun.xtablayout.XTabLayout;
 import com.dd.myplayvideodemo.R;
 import com.dd.myplayvideodemo.adapter.CommPagerAdapter;
 import com.dd.myplayvideodemo.base.BaseFragment;
+import com.dd.myplayvideodemo.bean.MainPageChangeEvent;
 import com.dd.myplayvideodemo.bean.PauseVideoEvent;
 import com.dd.myplayvideodemo.event.RxBus;
 import com.gyf.immersionbar.ImmersionBar;
@@ -70,6 +71,12 @@ public class MainFragment extends BaseFragment {
             public void onPageSelected(int position) {
 
                 curPage = position;
+
+                if(position!=0){
+                    RxBus.getDefault().post(new MainPageChangeEvent(1));
+                }else{
+                    RxBus.getDefault().post(new MainPageChangeEvent(0));
+                }
 
                 if (position == 1) {
                     //继续播放

@@ -11,6 +11,7 @@ import com.dd.myplayvideodemo.bean.PauseVideoEvent;
 import com.dd.myplayvideodemo.event.RxBus;
 import com.dd.myplayvideodemo.fragment.CityFragment;
 import com.dd.myplayvideodemo.fragment.MainFragment;
+import com.dd.myplayvideodemo.view.XViewPager;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ import rx.functions.Action1;
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.viewpager)
-    ViewPager viewPager;
+    XViewPager viewPager;
 
     private CommPagerAdapter pagerAdapter;
     private ArrayList<Fragment> fragments = new ArrayList<>();
@@ -45,13 +46,24 @@ public class MainActivity extends BaseActivity {
         fragments.add(personalHomeFragment);
         pagerAdapter = new CommPagerAdapter(getSupportFragmentManager(), fragments, new String[]{"",""});
         viewPager.setAdapter(pagerAdapter);
-
+        viewPager.setSlide(false);
         //点击头像切换页面
         RxBus.getDefault().toObservable(MainPageChangeEvent.class)
                 .subscribe((Action1<MainPageChangeEvent>) event -> {
-                    if (viewPager != null) {
-                        viewPager.setCurrentItem(event.getPage());
+
+                    if(viewPager!=null){
+                    if(event.getPage()==0){
+                        viewPager.setSlide(false);
+                    }else if(event.getPage()==1){
+                        viewPager.setSlide(true);
                     }
+                    }
+
+                /*    if (viewPager != null) {
+                   *//*     viewPager.setCurrentItem(event.getPage());*//*
+
+
+                    }*/
                 });
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -76,6 +88,7 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
 
 
     }

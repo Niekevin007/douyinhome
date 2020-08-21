@@ -4,8 +4,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-
-
+    <color name="gray">#4d4d4d</color>
     <color name="color_bg_theme">#161924</color>
     <color name="black">#000000</color>
     <color name="white">#fff</color>
@@ -15,4 +14,10 @@
     <color name="color_link">#FFDDA4</color>
     <color name="color_00BC1B">#00BC1B</color>
     <color name="light_gray">#fff5f5f5</color>
+
+
+    <color name="red1">#ffff476b</color>
+    <color name="red1_50a">#80ff476b</color>
+
+
 </resources>

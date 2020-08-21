@@ -21,13 +21,11 @@ import java.util.ArrayList;
 import butterknife.BindView;
 
 /**
- * create by libo
- * create on 2020-05-19
- * description 主页fragment
+ * 推荐同城界面
  */
 public class HomeFragment extends BaseFragment {
-    private Fragment currentLocationFragment;
-    private Fragment recommendFragment;
+    private HomeListFragment currentLocationFragment;
+    private HomeListFragment recommendFragment;
     @BindView(R.id.viewpager)
     ViewPager viewPager;
     @BindView(R.id.tab_title)
@@ -65,8 +63,8 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void setFragments() {
-        currentLocationFragment = new Fragment();
-        recommendFragment = new Fragment();
+        currentLocationFragment = new HomeListFragment();
+        recommendFragment = new HomeListFragment();
         fragments.add(currentLocationFragment);
         fragments.add(recommendFragment);
 
@@ -75,7 +73,7 @@ public class HomeFragment extends BaseFragment {
 
         pagerAdapter = new CommPagerAdapter(getChildFragmentManager(), fragments, new String[] {"海淀", "推荐"});
         viewPager.setAdapter(pagerAdapter);
-//        tabTitle.setupWithViewPager(viewPager);
+        tabTitle.setupWithViewPager(viewPager);
 
         tabTitle.getTabAt(1).select();
 
@@ -89,14 +87,14 @@ public class HomeFragment extends BaseFragment {
             public void onPageSelected(int position) {
 
                 curPage = position;
-
+/*
                 if (position == 1) {
                     //继续播放
                     RxBus.getDefault().post(new PauseVideoEvent(true));
                 } else {
                     //切换到其他页面，需要暂停视频
                     RxBus.getDefault().post(new PauseVideoEvent(false));
-                }
+                }*/
             }
 
             @Override
