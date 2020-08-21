@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_ui_rv"
+    android:background="@color/black"
+    tools:context=".fragment.MainFragment">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:id="@+id/status_line"
+        android:background="@color/black"
+        />
+
+    <com.dd.myplayvideodemo.view.XViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/status_line"
+        android:background="@drawable/shape_white_dialog"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/status_line"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="直播"
+            android:textSize="14sp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:textColor="#cccccc"
+            android:padding="10dp"/>
+
+        <com.androidkun.xtablayout.XTabLayout
+            android:id="@+id/tab_title"
+            android:layout_width="160dp"
+            app:xTabIndicatorColor="@color/color_link"
+            app:xTabSelectedTextColor="@color/color_link"
+            app:xTabTextColor="#CCCCCC"
+            app:xTabTextBold="true"
+            app:xTabTextSize="18sp"
+            app:xTabIndicatorWidth="20dp"
+            android:layout_height="44dp"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@mipmap/ic_launcher"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
