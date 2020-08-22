@@ -11,7 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 /*
 * 避免首页滑动冲突
 * */
-public class XViewPager extends ViewPager {
+public class HomeViewPager extends ViewPager {
 
     // 是否禁止 viewpager 左右滑动
     private boolean xScroll = true;
@@ -20,11 +20,11 @@ public class XViewPager extends ViewPager {
         this.xScroll = slide;
     }
 
-    public XViewPager(@NonNull Context context) {
+    public HomeViewPager(@NonNull Context context) {
         super(context);
     }
 
-    public XViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public HomeViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -52,8 +52,4 @@ public class XViewPager extends ViewPager {
         super.setCurrentItem(item, false);
     }
 
-    @Override
-    public boolean canScrollHorizontally(int direction) {
-        return false;
-    }
 }

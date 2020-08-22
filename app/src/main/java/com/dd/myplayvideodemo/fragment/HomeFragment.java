@@ -25,7 +25,7 @@ import butterknife.BindView;
  */
 public class HomeFragment extends BaseFragment {
     private HomeListFragment currentLocationFragment;
-    private HomeListFragment recommendFragment;
+    private Fragment recommendFragment;
     @BindView(R.id.viewpager)
     ViewPager viewPager;
     @BindView(R.id.tab_title)
@@ -64,10 +64,10 @@ public class HomeFragment extends BaseFragment {
 
     private void setFragments() {
         currentLocationFragment = new HomeListFragment();
-        recommendFragment = new HomeListFragment();
-        fragments.add(currentLocationFragment);
-        fragments.add(recommendFragment);
+        recommendFragment = new Fragment();
 
+        fragments.add(recommendFragment);
+        fragments.add(currentLocationFragment);
         tabTitle.addTab(tabTitle.newTab().setText("海淀"));
         tabTitle.addTab(tabTitle.newTab().setText("推荐"));
 

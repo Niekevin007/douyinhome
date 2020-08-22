@@ -11,8 +11,11 @@ import com.dd.myplayvideodemo.bean.PauseVideoEvent;
 import com.dd.myplayvideodemo.event.RxBus;
 import com.dd.myplayvideodemo.fragment.CityFragment;
 import com.dd.myplayvideodemo.fragment.MainFragment;
+import com.dd.myplayvideodemo.utils.Config;
+import com.dd.myplayvideodemo.view.HomeViewPager;
 import com.dd.myplayvideodemo.view.XViewPager;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -21,7 +24,7 @@ import rx.functions.Action1;
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.viewpager)
-    XViewPager viewPager;
+    HomeViewPager viewPager;
 
     private CommPagerAdapter pagerAdapter;
     private ArrayList<Fragment> fragments = new ArrayList<>();
