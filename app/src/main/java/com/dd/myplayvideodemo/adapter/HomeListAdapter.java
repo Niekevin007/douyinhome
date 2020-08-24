@@ -1,5 +1,8 @@
 package com.dd.myplayvideodemo.adapter;
 
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
@@ -30,6 +33,9 @@ public class HomeListAdapter extends BaseQuickAdapter<HomeListBeans.BodyBean.Rec
     @Override
     protected void convert(@NotNull BaseViewHolder helper, @NotNull HomeListBeans.BodyBean.RecordsBean item) {
 
+        ImageView iv_cover = helper.getView(R.id.iv_cover);
+
+        Glide.with(getContext()).load(item.getCoverPath()).into(iv_cover);
 
     }
 }

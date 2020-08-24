@@ -65,7 +65,7 @@ public class HomeListFragment extends BaseFragment implements
 
     private List<HomeListBeans.BodyBean.RecordsBean> homeList ;
     private int page = 1;
-
+    private ImageView ivCurCover;
 
     @Override
     protected int setLayoutId() {
@@ -77,7 +77,7 @@ public class HomeListFragment extends BaseFragment implements
         homeList = new ArrayList<>();
         videoView = new PLVideoView(getContext());
         videoView.setDisplayAspectRatio(PLVideoView.ASPECT_RATIO_PAVED_PARENT);
-        movieSetCache();
+//        movieSetCache();
         adapter = new HomeListAdapter( homeList);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -112,6 +112,11 @@ public class HomeListFragment extends BaseFragment implements
                     int currentPageIndex = linearLayoutManager.getPosition(snapView);
                     if(currentPage!=currentPageIndex){//防止重复提示
                         currentPage = currentPageIndex;
+
+                        if (ivCurCover != null) {
+                            ivCurCover.setVisibility(View.VISIBLE);
+                        }
+
                         Log.d("thispostion","当前是第" + currentPageIndex + "页");
 //                        Toast.makeText(MainActivity.this, "当前是第" + currentPageIndex + "页", Toast.LENGTH_SHORT).show();
                         setMovieView (currentPageIndex);
@@ -164,7 +169,8 @@ public class HomeListFragment extends BaseFragment implements
         curPlayPos = index;
         //切换播放器位置
         dettachParentView(rootView);
-        autoPlayVideo(index);
+        ImageView ivCover = rootView.findViewById(R.id.iv_cover);
+        autoPlayVideo(index,ivCover);
     }
 
     /**
@@ -177,6 +183,7 @@ public class HomeListFragment extends BaseFragment implements
             parent.removeView(videoView);
         }
 
+
         videoView.setLayoutParams(rootView.getLayoutParams());
         rootView.addView(videoView, 0);
         videoView.stopPlayback();
@@ -184,13 +191,30 @@ public class HomeListFragment extends BaseFragment implements
     /**
      * 自动播放视频
      */
-    private void autoPlayVideo(int position) {
+    private void autoPlayVideo(int position,ImageView ivCover) {
 
         videoView.setVideoPath(homeList.get(position).getResponse().getPlayInfoList().get(0).getPlayURL());
 
         videoView.start();
 
-        videoView.setOnPreparedListener(this);
+        videoView.setOnPreparedListener(new PLOnPreparedListener() {
+            @Override
+            public void onPrepared(int i) {
+                //延迟取消封面，避免加载视频黑屏
+                new CountDownTimer(500, 200) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        ivCover.setVisibility(View.GONE);
+                        ivCurCover = ivCover;
+                    }
+                }.start();
+            }
+        });
         videoView.setOnInfoListener(this);
         videoView.setOnCompletionListener(this);
         videoView.setOnVideoSizeChangedListener(this);

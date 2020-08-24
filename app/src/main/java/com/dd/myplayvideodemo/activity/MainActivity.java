@@ -9,13 +9,10 @@ import com.dd.myplayvideodemo.base.BaseActivity;
 import com.dd.myplayvideodemo.bean.MainPageChangeEvent;
 import com.dd.myplayvideodemo.bean.PauseVideoEvent;
 import com.dd.myplayvideodemo.event.RxBus;
-import com.dd.myplayvideodemo.fragment.CityFragment;
 import com.dd.myplayvideodemo.fragment.MainFragment;
+import com.dd.myplayvideodemo.fragment.UserHomeFragment;
 import com.dd.myplayvideodemo.utils.Config;
 import com.dd.myplayvideodemo.view.HomeViewPager;
-import com.dd.myplayvideodemo.view.XViewPager;
-
-import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -30,7 +27,7 @@ public class MainActivity extends BaseActivity {
     private ArrayList<Fragment> fragments = new ArrayList<>();
     public static int curMainPage;
     private MainFragment mainFragment = new MainFragment();
-    private CityFragment personalHomeFragment = new CityFragment();
+    private UserHomeFragment personalHomeFragment = new UserHomeFragment();
     /** 上次点击返回键时间 */
     private long lastTime;
     /** 连续按返回键退出时间 */
@@ -61,12 +58,6 @@ public class MainActivity extends BaseActivity {
                         viewPager.setSlide(true);
                     }
                     }
-
-                /*    if (viewPager != null) {
-                   *//*     viewPager.setCurrentItem(event.getPage());*//*
-
-
-                    }*/
                 });
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
